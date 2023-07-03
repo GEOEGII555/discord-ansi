@@ -1,6 +1,6 @@
 [project]
 name = "discord-ansi"
-version = "0.6"
+version = "1.0"
 authors = [
   { name="GEOEGII555", email="geoegii2001555@gmail.com" },
   { name="GEOEGII555 (Alternative email)", email="webmaster@geoegii555.eu.org" },
