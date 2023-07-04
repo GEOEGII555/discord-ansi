@@ -84,7 +84,8 @@ text = messageBuilder.getText()
 Q: What are the colours available?
 A: Tutorial:
 1. Open your Python interpreter
-2. ```py
+2. Use the code below:
+```py
 import discord_ansi
 print(discord_ansi.foreground_colors.keys())
 print(discord_ansi.background_colors.keys())
