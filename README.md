@@ -76,6 +76,7 @@ messageBuilder.addText("Arguments: none", background="orange")
 text = messageBuilder.getText()
 # Send the message using your library
 # The most popular one is Discord.py
+# bot.login("ODk2MjgzNjExMzYyMzY1NDYw.YW1C3A.rNvidfDBqKWxD5HhgNjH4d7UsfQ") (fake token)
 # interaction.response.send_message(text)
 # Or you can send a direct request to Discord API
 # requests.post("https://discord.com/api/v10/channels/.../messages", json=dict(content=text), headers=dict(authorization="Bot <token>"))
