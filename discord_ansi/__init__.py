@@ -1,3 +1,4 @@
+import warnings
 from typing import Optional, Union
 from ctypes import c_char
 
@@ -154,7 +155,7 @@ class ANSIArt:
         y : int | required
             Y position
         """
-        return self.data[x][y][0]
+        return self.data[x][y]
     
     def setPixel(self, x: int, y: int, color: str):
         """
@@ -172,58 +173,7 @@ class ANSIArt:
         """
         if color not in background_colors:
             raise Exception("Invalid background color! (You can only use background colors, not foreground ones!)")
-        self.data[x][y][0] = color
-    
-    def getPixelTextColor(self, x: int, y: int):
-        """
-        Gets the color of the text inside of a pixel.
-        Please note that it starts counting from 0.
-        
-        Parameters
-        ----------
-        x : int | required
-            X position
-        y : int | required
-            Y position
-        """
-        return self.data[x][y][1]
-    
-    def setPixelTextColor(self, x: int, y: int, color: str):
-        """
-        Sets the color of the text inside of a pixel.
-        Please note that it starts counting from 0.
-        
-        Parameters
-        ----------
-        x : int | required
-            X position
-        y : int | required
-            Y position
-        color : str | required
-            A valid color
-        """
-        if color not in background_colors:
-            raise Exception("Invalid foreground color! (You can only use foreground colors for character colors!)")
-        self.data[x][y][1] = color
-    
-    def setPixelChar(self, x: int, y: int, char: Union[str, c_char]):
-        """
-        Set a character to be inside the pixel.
-        
-        Parameters
-        ----------
-        x : int | required
-            X position
-        y : int | required
-            Y position
-        char : Union[str, c_char] | required
-            The character you want to put there
-        """
-        if type(char) == c_char:
-            char = chr(char.value[0])
-        if len(char) != 1:
-            raise Exception("Must be one character!")
-        self.data[x][y][2] = char
+        self.data[x][y] = color
     
     def fillSquare(self, x1: int, y1: int, x2: int, y2: int, color: str):
         """
@@ -265,11 +215,11 @@ class ANSIArt:
         data = "```ansi\n\033[0m"
         current_color = ""
         for x in self.data:
-            for color in x:
-                if color != current_color:
-                    data += f"\033[{background_colors[color]}m"
-                    current_color = color
+            for y in x:
+                if y != current_color:
+                    data += f"\033[{background_colors[y]}m"
+                    current_color = y
                 data += "  "
             data += "\n"
-        data += "```"
+        data += "\033[0;0m\n```"
         return data
