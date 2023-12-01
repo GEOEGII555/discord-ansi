@@ -8,15 +8,17 @@ Note: Some colors may be different on Discord light theme and dark theme. I adju
 ```py
 import discord_ansi
 
-ansiArt = discord_ansi.ANSIArt(5, 5)
+# Width: 4
+# Height: 4
+ansiArt = discord_ansi.ANSIArt(4, 4)
 ansiArt.fillAll("blue") # fill entire image
-# From (1, 1) to (4, 4) if counting from 1
-# But it starts counting from 0, so it's (0, 0) to (3, 3)
-ansiArt.fillSquare(0, 0, 3, 3, "orange")
+# From (1, 1) to (3, 3) if counting from 1
+# But it starts counting from 0, so it's (0, 0) to (2, 2)
+ansiArt.fillSquare(0, 0, 2, 2, "orange")
 # Set individual pixels
 # (2, 2) if counting from 1
 # But it starts counting from 0, so it's (1, 1)
-ansiArt.setPixel(2, 2, "blue")
+ansiArt.setPixel(1, 1, "blue")
 output = ansiArt.render()
 ```
 ## Message builder:
@@ -83,21 +85,17 @@ text = messageBuilder.getText()
 ```
 # More info
 Q: What are the colours available?
-A: Tutorial:
-1. Open your Python interpreter
-2. Use the code below:
-```py
-import discord_ansi
-print(discord_ansi.foreground_colors.keys())
-print(discord_ansi.background_colors.keys())
-```
-If you are making an ANSI art, use background colors
+A: (If you are making an ANSI art, use background colors)
+Foreground colors: black, red, green, yellow, blue, magenta, cyan, white.
+Background colors: black, orange, gray-1, gray-2, gray-3, blue, gray-4, white. (multiple shades of gray)
 Q: What if I want to send a colored output from a **terminal command**?
 A: If you want to insert it into a subclass of MessageBuilder:
 ```py
+# ls -la --color=always
 messageBuilder.insertANSIText(output)
 ```
 If you want a completely new message, use the from_ansi_output() function:
 ```py
+# ls -la --color=always
 discord_ansi.from_ansi_output(output)
 ```
